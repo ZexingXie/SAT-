@@ -87,9 +87,16 @@ int cpick_skc()
 			++bestvar_count;
 		}
 	}
-	
+	/*************************
+	上诉有两个问题
+	1. 存在后来抹去前面变元的问题
+	2. 选择过于贪心
+	3. 潜在破坏
+	*************************/
 	if(best_bbreak == 0) return bestvar_array[rand()%bestvar_count];//此处有改进方案？？？？最近最少翻转？？？
-
+    /*  byMy
+	要不要颠覆损失？？？？
+	*/
 	r = (rand()%MY_RAND_MAX_INT)*BASIC_SCALE;
 	
 	if(r > wp)
@@ -148,7 +155,8 @@ void local_search(int max_flips)
 		{
 			nobetter_steps++;
 			if(nobetter_steps == 1000)
-			{//????
+			{
+				//????
 				//cout<<"min_unsat:"<<step<<"("<<min_unsat<<")"<<endl;
 			}
 		}
